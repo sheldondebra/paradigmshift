@@ -61,34 +61,116 @@ export function SectionHeading({
   );
 }
 
+type ButtonVariant = "primary" | "secondary" | "outline" | "outline-dark" | "ghost";
+type ButtonSize = "sm" | "md";
+
+const buttonSizes: Record<ButtonSize, string> = {
+  sm: "px-5 py-2.5 text-sm",
+  md: "px-6 py-3 text-sm",
+};
+
+const buttonVariants: Record<ButtonVariant, string> = {
+  primary:
+    "bg-gold-gradient text-ps-navy shadow-md shadow-ps-gold/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ps-gold/30",
+  secondary:
+    "bg-ps-navy text-white shadow-md shadow-ps-navy/15 hover:-translate-y-0.5 hover:bg-ps-navy-mid hover:shadow-lg",
+  outline:
+    "border-2 border-white/50 bg-white/5 text-white backdrop-blur-sm hover:border-ps-gold hover:bg-white/10",
+  "outline-dark":
+    "border-2 border-ps-navy/20 bg-white text-ps-navy hover:-translate-y-0.5 hover:border-ps-navy hover:bg-ps-navy hover:text-white hover:shadow-md",
+  ghost:
+    "text-ps-navy underline-offset-4 hover:text-ps-gold-dark hover:underline",
+};
+
+export function buttonClassName({
+  variant = "primary",
+  size = "md",
+  className = "",
+}: {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+} = {}) {
+  return [
+    "group inline-flex items-center justify-center gap-2 rounded-lg font-bold tracking-wide transition-all duration-200",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ps-gold focus-visible:ring-offset-2",
+    "active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0",
+    buttonSizes[size],
+    buttonVariants[variant],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function ButtonArrow() {
+  return (
+    <svg
+      className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.5}
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
 export function ButtonLink({
   href,
   children,
   variant = "primary",
+  size = "md",
+  showArrow = variant === "primary" || variant === "secondary",
   className = "",
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  showArrow?: boolean;
   className?: string;
 }) {
-  const styles = {
-    primary:
-      "bg-gold-gradient text-ps-navy shadow-lg shadow-ps-gold/25 hover:brightness-105 hover:shadow-xl hover:shadow-ps-gold/30",
-    secondary:
-      "bg-ps-navy text-white shadow-lg shadow-ps-navy/20 hover:bg-ps-navy-mid",
-    outline:
-      "border-2 border-white/40 text-white backdrop-blur-sm hover:border-ps-gold hover:bg-white/10",
-    ghost: "text-ps-navy hover:text-ps-gold-dark",
-  };
+  const classes = buttonClassName({ variant, size, className });
+  const isExternal = href.startsWith("http");
+
+  if (isExternal) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+        {children}
+        {showArrow && <ButtonArrow />}
+      </a>
+    );
+  }
 
   return (
-    <Link
-      href={href}
-      className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-bold transition-all duration-200 ${styles[variant]} ${className}`}
-    >
+    <Link href={href} className={classes}>
       {children}
+      {showArrow && <ButtonArrow />}
     </Link>
+  );
+}
+
+export function Button({
+  children,
+  variant = "primary",
+  size = "md",
+  showArrow = false,
+  className = "",
+  type = "button",
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  showArrow?: boolean;
+}) {
+  return (
+    <button type={type} className={buttonClassName({ variant, size, className })} {...props}>
+      {children}
+      {showArrow && <ButtonArrow />}
+    </button>
   );
 }
 
@@ -137,12 +219,9 @@ export function CtaBand() {
           <ButtonLink href="/get-involved" variant="secondary">
             Get Involved
           </ButtonLink>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full border-2 border-ps-navy/30 px-6 py-3 text-sm font-bold text-ps-navy transition-all hover:border-ps-navy hover:bg-ps-navy hover:text-white"
-          >
+          <ButtonLink href="/contact" variant="outline-dark">
             Contact Us
-          </Link>
+          </ButtonLink>
         </div>
       </div>
     </section>

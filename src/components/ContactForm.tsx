@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui";
 import { siteConfig } from "@/lib/content";
 
 export function ContactForm() {
@@ -72,12 +73,9 @@ export function ContactForm() {
         <textarea id="message" name="message" rows={5} required className={`${inputClass} resize-y`} />
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-full bg-gold-gradient px-6 py-3.5 text-sm font-bold text-ps-navy shadow-lg shadow-ps-gold/25 transition-all hover:brightness-105 sm:w-auto"
-      >
+      <Button type="submit" className="w-full sm:w-auto">
         Send Message
-      </button>
+      </Button>
     </form>
   );
 }

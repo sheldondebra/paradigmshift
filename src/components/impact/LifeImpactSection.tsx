@@ -105,7 +105,7 @@ export function LifeImpactSection({
     <section className="bg-ps-cream py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-          label="Real Lives, Real Change"
+          label="Entrepreneurship · Encouragement"
           title={lifeImpactIntro.title}
           description={lifeImpactIntro.description}
           align="center"
@@ -164,8 +164,8 @@ export function LifeChangeOutcomesSection() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
           label="Why It Matters"
-          title="How Our Work Touches Everyday Life"
-          description="Every program we run connects to something deeply personal — a child's future, a family's health, a community's hope."
+          title="How Entrepreneurship & Encouragement Change Lives"
+          description="Every programme we run connects to something deeply personal — a young entrepreneur finding their footing, or someone finally hearing that their idea is worth pursuing."
           align="center"
         />
 

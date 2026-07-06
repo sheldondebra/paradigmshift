@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LifeChangeOutcomesSection } from "@/components/impact/LifeImpactSection";
+import { PartnersNetwork } from "@/components/PartnersNetwork";
 import { SiteImageFill } from "@/components/SiteImage";
 import { PageHero, SectionHeading, CtaBand } from "@/components/ui";
 import { getFacebookEmbedUrl, facebookReel } from "@/lib/videos";
-import { focusAreas, missionStatement, partners, visionStatement } from "@/lib/content";
+import { focusAreas, missionStatement, visionStatement } from "@/lib/content";
 import { images } from "@/lib/images";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About Us",
   description:
-    "Paradigm Shift is a Ghana-based non-profit empowering communities through education, mentorship, infrastructure, and health programs.",
-};
+    "Learn about Paradigm Shift — a Ghana-based non-profit under Phamily Circle, running entrepreneurship workshops, mentorship, and community programmes in Accra.",
+  path: "/about",
+  image: images.handshake,
+});
 
 export default function AboutPage() {
   return (
@@ -130,9 +134,8 @@ export default function AboutPage() {
       <LifeChangeOutcomesSection />
 
       <section className="border-t border-ps-border py-16">
-        <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
-          <p className="text-sm font-bold uppercase tracking-widest text-ps-green">Partners</p>
-          <p className="mt-4 text-lg font-semibold text-ps-navy">{partners.join(" · ")}</p>
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <PartnersNetwork />
         </div>
       </section>
 

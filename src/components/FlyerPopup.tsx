@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   createContext,
   useCallback,
@@ -9,6 +10,19 @@ import {
   useState,
   type ReactNode,
 } from "react";
+
+const DISMISS_KEY = "ps-flyer-dismissed";
+
+export type FlyerContent = {
+  src: string;
+  alt: string;
+  eyebrow?: string;
+  title: string;
+  date?: string;
+  time?: string;
+  venue?: string;
+  href?: string;
+};
 
 type FlyerPopupContextValue = {
   open: () => void;
@@ -25,20 +39,32 @@ function useFlyerPopup() {
 }
 
 export function FlyerPopupRoot({
-  src,
-  alt,
+  flyer,
   autoOpen = false,
+  active = true,
   children,
 }: {
-  src: string;
-  alt: string;
+  flyer: FlyerContent;
   autoOpen?: boolean;
+  active?: boolean;
   children: ReactNode;
 }) {
-  const [open, setOpen] = useState(autoOpen);
+  const [open, setOpen] = useState(false);
 
-  const openFlyer = useCallback(() => setOpen(true), []);
-  const closeFlyer = useCallback(() => setOpen(false), []);
+  const openFlyer = useCallback(() => {
+    if (active) setOpen(true);
+  }, [active]);
+
+  const closeFlyer = useCallback(() => {
+    sessionStorage.setItem(DISMISS_KEY, "1");
+    setOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (!autoOpen || !active) return;
+    if (sessionStorage.getItem(DISMISS_KEY)) return;
+    setOpen(true);
+  }, [autoOpen, active]);
 
   useEffect(() => {
     if (!open) return;
@@ -59,45 +85,77 @@ export function FlyerPopupRoot({
     };
   }, [open, closeFlyer]);
 
+  if (!active) {
+    return <>{children}</>;
+  }
+
   return (
     <FlyerPopupContext.Provider value={{ open: openFlyer }}>
       {children}
 
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           role="presentation"
         >
           <button
             type="button"
             aria-label="Close flyer"
-            className="absolute inset-0 bg-black/75"
+            className="absolute inset-0 bg-black/60"
             onClick={closeFlyer}
           />
 
           <div
             role="dialog"
             aria-modal="true"
-            aria-label={alt}
-            className="relative z-10 w-full max-w-xs sm:max-w-sm"
+            aria-label={flyer.title}
+            className="relative z-10 w-[min(100%,21rem)] sm:w-[min(100%,24rem)]"
           >
             <button
               type="button"
               onClick={closeFlyer}
               aria-label="Close"
-              className="absolute -right-2 -top-2 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg leading-none text-ps-navy shadow-md transition-transform hover:scale-105"
+              className="absolute -right-2 -top-2 z-20 flex h-7 w-7 items-center justify-center rounded-full border border-ps-border bg-white text-ps-navy shadow-md transition-colors hover:bg-ps-cream"
             >
-              <span aria-hidden="true">&times;</span>
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+              </svg>
             </button>
 
-            <Image
-              src={src}
-              alt={alt}
-              width={864}
-              height={1024}
-              className="h-auto max-h-[85vh] w-full rounded-lg shadow-2xl"
-              priority
-            />
+            {flyer.href ? (
+              <Link
+                href={flyer.href}
+                onClick={closeFlyer}
+                className="block overflow-hidden rounded-2xl border-2 border-white/90 shadow-xl"
+              >
+                <Image
+                  src={flyer.src}
+                  alt={flyer.alt}
+                  width={864}
+                  height={1024}
+                  className="h-auto max-h-[min(80vh,36rem)] w-full"
+                  priority
+                />
+              </Link>
+            ) : (
+              <div className="overflow-hidden rounded-2xl border-2 border-white/90 shadow-xl">
+                <Image
+                  src={flyer.src}
+                  alt={flyer.alt}
+                  width={864}
+                  height={1024}
+                  className="h-auto max-h-[min(80vh,36rem)] w-full"
+                  priority
+                />
+              </div>
+            )}
           </div>
         </div>
       )}

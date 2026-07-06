@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/ui";
 import { siteConfig } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact Us",
-  description: "Reach Paradigm Shift by phone, email, or the contact form below.",
-};
+  description:
+    "Contact Paradigm Shift in Accra, Ghana — volunteer, partner, sponsor an event, or ask about upcoming workshops and programmes.",
+  path: "/contact",
+});
 
 const contactDetails = [
   {

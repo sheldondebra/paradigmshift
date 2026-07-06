@@ -10,8 +10,9 @@ export const imageCatalog: Record<string, ImageMeta> = {
   "/images/asset_21-7771a1e8-12e7-4e71-bf80-50f42308f31e.png": { src: "/images/asset_21-7771a1e8-12e7-4e71-bf80-50f42308f31e.png", width: 1024, height: 682 },
   "/images/asset_22-d48bb2c5-25bb-44fa-b608-dc7cc28a775a.png": { src: "/images/asset_22-d48bb2c5-25bb-44fa-b608-dc7cc28a775a.png", width: 930, height: 1024 },
   "/images/asset_23-86cc186c-7798-4e16-af91-d9bd3413f2cc.png": { src: "/images/asset_23-86cc186c-7798-4e16-af91-d9bd3413f2cc.png", width: 1024, height: 796 },
-  "/images/image-016b19de-d41a-41e9-8afe-91b5ee6b01c2.png": { src: "/images/image-016b19de-d41a-41e9-8afe-91b5ee6b01c2.png", width: 1000, height: 300 },
   "/images/phamily-circle-building-nations-2026.png": { src: "/images/phamily-circle-building-nations-2026.png", width: 864, height: 1024 },
+  "/images/gallery-paradigm-shift-speaker-isser.png": { src: "/images/gallery-paradigm-shift-speaker-isser.png", width: 1024, height: 683 },
+  "/images/gallery-workshop-attendee-notes.png": { src: "/images/gallery-workshop-attendee-notes.png", width: 682, height: 1024 },
   "/images/asset_2-9be3f6b5-e828-4e42-82ed-0fbe193210a2.png": { src: "/images/asset_2-9be3f6b5-e828-4e42-82ed-0fbe193210a2.png", width: 200, height: 300 },
   "/images/asset_3-e91b9d29-bdd4-4c84-8141-540b0e5da2bc.png": { src: "/images/asset_3-e91b9d29-bdd4-4c84-8141-540b0e5da2bc.png", width: 278, height: 300 },
   "/images/asset_4-2dc2bb30-c598-436a-a38a-40954ea4dd3f.png": { src: "/images/asset_4-2dc2bb30-c598-436a-a38a-40954ea4dd3f.png", width: 288, height: 300 },
@@ -37,7 +38,6 @@ const HR = "/images/asset_21-7771a1e8-12e7-4e71-bf80-50f42308f31e.png";
 const HR2 = "/images/asset_23-86cc186c-7798-4e16-af91-d9bd3413f2cc.png";
 const HR3 = "/images/asset_1-fe1f7203-9615-443e-8300-7c2ae61e24fa.png";
 const HR4 = "/images/asset_22-d48bb2c5-25bb-44fa-b608-dc7cc28a775a.png";
-const BANNER = "/images/image-016b19de-d41a-41e9-8afe-91b5ee6b01c2.png";
 
 /** Large layout slots — only use images ≥930px wide */
 export const images = {
@@ -51,16 +51,16 @@ export const images = {
   founders: HR4,
   eventGroup: HR,
   youthSpeaker: HR2,
-  banner: BANNER,
 };
 
 /** Gallery: high-res first, then smaller thumbs */
 export const galleryImages = [
+  "/images/gallery-paradigm-shift-speaker-isser.png",
+  "/images/gallery-workshop-attendee-notes.png",
   HR3,
   HR,
   HR4,
   HR2,
-  BANNER,
   "/images/asset_5-1dba832a-5450-4005-b993-a7da7769cb50.png",
   "/images/asset_9-1f7f7ccb-ec53-42f0-a61d-90bfc22ac783.png",
   "/images/asset_4-2dc2bb30-c598-436a-a38a-40954ea4dd3f.png",

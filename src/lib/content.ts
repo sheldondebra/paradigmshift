@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Unlocking Potential. Empowering Communities.",
   slogan: "Together, We Make the Shift.",
   description:
-    "Building bridges of hope through education, mentorship, infrastructure, and health programs in underserved communities across Ghana.",
+    "Paradigm Shift is a Ghana-based non-profit under Phamily Circle, empowering young people through entrepreneurship workshops, mentorship, and community encouragement across Accra and beyond.",
   email: "hello@paradigmshiftgh.com",
   phone: "059 392 4521",
   location: "Accra, Ghana",
@@ -17,14 +17,26 @@ export const siteConfig = {
 export const siteFlyer = {
   src: "/images/phamily-circle-building-nations-2026.png",
   alt: "Building Nations: Nurturing Creativity — Phamily Circle event flyer",
-  title: "Upcoming Event",
+  eyebrow: "Upcoming event",
+  title: "Building Nations: Nurturing Creativity",
+  date: "Saturday, 16 August 2026",
+  time: "9:30 AM – 3:00 PM",
+  venue: "ISSER, University of Ghana, Legon",
   href: "/news/building-nations-nurturing-creativity",
+  /** Popup is hidden from 17 August 2026 onward */
+  activeUntil: "2026-08-16",
 };
+
+export function isSiteFlyerActive(): boolean {
+  const end = new Date(`${siteFlyer.activeUntil}T23:59:59.999`);
+  return Date.now() <= end.getTime();
+}
 
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/news", label: "News & Impact" },
+  { href: "/partnership", label: "Partnership" },
   { href: "/get-involved", label: "Get Involved" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -91,10 +103,23 @@ export const involvementOptions = [
   },
 ];
 
-export const partners = [
-  "Phamily Circle",
-  "TEC UNIT",
-  "360 Marketing",
-  "ISSER",
-  "FBN Fab by Nice",
+export const parentOrganization = {
+  name: "Phamily Circle",
+  description:
+    "Phamily Circle is the group behind Paradigm Shift — where our volunteers, events, and community work come together.",
+};
+
+/** Organisations that collaborate with Paradigm Shift on programmes and events */
+export type CollaborativePartner = {
+  name: string;
+  href?: string;
+};
+
+export const collaborativePartners: CollaborativePartner[] = [
+  { name: "360 Marketing" },
+  { name: "FBN Fab by Nice" },
+  { name: "TEC UNIT", href: "https://www.tecunitgh.com" },
 ];
+
+/** @deprecated Use parentOrganization + collaborativePartners */
+export const partners = collaborativePartners.map((partner) => partner.name);

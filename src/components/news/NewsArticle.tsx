@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FlyerPopupTrigger } from "@/components/FlyerPopup";
-import { ButtonLink, SectionLabel } from "@/components/ui";
+import { ButtonLink, SectionLabel, buttonClassName } from "@/components/ui";
+import { isSiteFlyerActive } from "@/lib/content";
 import { categoryStyles, type NewsItem } from "@/lib/news";
 import {
   getDefaultPostBody,
@@ -56,9 +57,16 @@ function EventDetailsCard({ details }: { details: NewsEventDetails }) {
         </div>
       </dl>
       <div className="mt-8 flex flex-col gap-3">
-        <FlyerPopupTrigger className="inline-flex w-full items-center justify-center rounded-full border-2 border-ps-navy/20 px-6 py-3 text-sm font-bold text-ps-navy transition-all hover:border-ps-gold hover:text-ps-gold-dark sm:w-auto">
-          View Event Flyer
-        </FlyerPopupTrigger>
+        {isSiteFlyerActive() && (
+          <FlyerPopupTrigger
+            className={buttonClassName({
+              variant: "outline-dark",
+              className: "w-full sm:w-auto",
+            })}
+          >
+            View Event Flyer
+          </FlyerPopupTrigger>
+        )}
         <ButtonLink href="/get-involved?tab=events" variant="primary" className="w-full sm:w-auto">
           Register for Events
         </ButtonLink>
@@ -143,10 +151,9 @@ export function NewsArticle({ item }: { item: NewsItem }) {
           Back to News
         </Link>
 
-        {showFlyerPopup && (
-          <FlyerPopupTrigger className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-bold text-ps-navy shadow-md shadow-ps-gold/20 transition-opacity hover:opacity-90">
+        {showFlyerPopup && isSiteFlyerActive() && (
+          <FlyerPopupTrigger className={buttonClassName({ size: "sm", className: "mt-6" })}>
             View Event Flyer
-            <span aria-hidden="true">&rarr;</span>
           </FlyerPopupTrigger>
         )}
 

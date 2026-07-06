@@ -1,14 +1,10 @@
 import Link from "next/link";
-import {
-  focusAreas,
-  missionStatement,
-  partners,
-  siteConfig,
-  visionStatement,
-} from "@/lib/content";
+import { FocusAreasCarousel } from "@/components/FocusAreasCarousel";
+import { missionStatement, siteConfig, visionStatement } from "@/lib/content";
 import { lifeImpactStories } from "@/lib/impact-stories";
 import { galleryImages, getImageMeta, images, isHighRes } from "@/lib/images";
 import { SiteImageFill } from "@/components/SiteImage";
+import { PartnersNetwork } from "@/components/PartnersNetwork";
 import { ButtonLink, SectionHeading } from "./ui";
 
 export function HeroSection() {
@@ -25,8 +21,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-hero-gradient" />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-36 sm:px-8 sm:pb-28">
-        <p className="animate-fade-up mb-4 inline-flex items-center gap-2 rounded-full border border-ps-gold/40 bg-ps-gold/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-ps-gold backdrop-blur-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-ps-gold" />
+        <p className="animate-fade-up mb-4 text-sm text-white/80 sm:text-base">
           {siteConfig.slogan}
         </p>
 
@@ -111,42 +106,7 @@ export function AboutPreview() {
 }
 
 export function FocusAreasSection() {
-  return (
-    <section className="bg-ps-cream py-24 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading
-          label="What We Do"
-          title="Our Focus Areas"
-          description="Four pillars of community development — each designed to create holistic, lasting impact."
-          align="center"
-        />
-
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
-          {focusAreas.map((area, index) => (
-            <article
-              key={area.title}
-              className="group card-shine relative overflow-hidden rounded-2xl border border-ps-border bg-white p-8 transition-all duration-300 hover:-translate-y-1"
-            >
-              <span className="absolute -right-4 -top-4 text-8xl font-extrabold text-ps-gold/10 transition-colors group-hover:text-ps-gold/20">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="relative">
-                <div className="mb-4 h-1 w-12 rounded-full bg-gold-gradient" />
-                <h3 className="text-xl font-bold text-ps-navy">{area.title}</h3>
-                <p className="mt-3 leading-relaxed text-ps-muted">
-                  {area.description}
-                </p>
-                <p className="mt-4 rounded-lg bg-ps-cream px-4 py-3 text-sm font-medium leading-relaxed text-ps-navy">
-                  <span className="font-bold text-ps-green">Life impact: </span>
-                  {area.lifeImpact}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <FocusAreasCarousel />;
 }
 
 export function ImpactSection() {
@@ -173,9 +133,9 @@ export function ImpactSection() {
             />
             <p className="mt-6 text-lg leading-relaxed text-white/75">
               We measure success not only in projects completed, but in lives
-              changed — students who stay in school, entrepreneurs who create
-              jobs, families with clean water, and communities with access to
-              care.
+              changed — entrepreneurs who create jobs, young people who find the
+              confidence to start, and communities lifted by people who believe
+              in them.
             </p>
 
             <div className="mt-8 space-y-4">
@@ -254,7 +214,6 @@ export function GallerySection() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes={large ? "(max-width: 768px) 100vw, 640px" : "(max-width: 768px) 50vw, 280px"}
                 />
-                <div className="absolute inset-0 bg-ps-navy/0 transition-colors duration-300 group-hover:bg-ps-navy/20" />
               </div>
             );
           })}
@@ -285,19 +244,12 @@ export function PartnersSection() {
           align="center"
         />
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          {partners.map((partner) => (
-            <span
-              key={partner}
-              className="rounded-full border border-ps-border bg-ps-cream px-5 py-2.5 text-sm font-semibold text-ps-navy transition-all hover:border-ps-gold hover:bg-gold-gradient hover:shadow-md hover:shadow-ps-gold/20"
-            >
-              {partner}
-            </span>
-          ))}
+        <div className="mt-10">
+          <PartnersNetwork />
         </div>
 
         <div className="mt-8 text-center">
-          <ButtonLink href="/get-involved" variant="secondary">
+          <ButtonLink href="/partnership" variant="secondary">
             Become a Partner
           </ButtonLink>
         </div>

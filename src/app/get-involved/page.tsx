@@ -4,12 +4,14 @@ import { FaqSection } from "@/components/get-involved/FaqSection";
 import { GetInvolvedHub } from "@/components/get-involved/GetInvolvedHub";
 import { ImpactOnLivesBand } from "@/components/impact/ImpactOnLivesBand";
 import { isValidTab } from "@/lib/get-involved";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Get Involved",
   description:
-    "Volunteer, donate, partner, or register for events with Paradigm Shift in Ghana.",
-};
+    "Volunteer, donate, register for events, or partner with Paradigm Shift in Ghana — support entrepreneurship and community programmes.",
+  path: "/get-involved",
+});
 
 export default async function GetInvolvedPage({
   searchParams,

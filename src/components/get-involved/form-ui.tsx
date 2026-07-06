@@ -1,6 +1,7 @@
 "use client";
 
 import type { ActionResult } from "@/app/get-involved/actions";
+import { Button } from "@/components/ui";
 
 export function FormField({
   label,
@@ -133,13 +134,9 @@ export function SubmitButton({
   pendingLabel?: string;
 }) {
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full rounded-full bg-gold-gradient px-6 py-3.5 text-sm font-bold text-ps-navy shadow-lg shadow-ps-gold/25 transition-all hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-    >
+    <Button type="submit" disabled={pending} className="w-full sm:w-auto">
       {pending ? pendingLabel : label}
-    </button>
+    </Button>
   );
 }
 

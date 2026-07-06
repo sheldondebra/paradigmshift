@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { navLinks, partners, siteConfig } from "@/lib/content";
-import { Logo } from "./ui";
+import { navLinks, siteConfig } from "@/lib/content";
+import { CookieSettingsLink } from "./CookieSettingsLink";
+import { ButtonLink, Logo } from "./ui";
 
 const socialLinks = [
   {
@@ -36,6 +37,7 @@ const socialLinks = [
 ];
 
 const getInvolvedLinks = [
+  { href: "/partnership", label: "Sponsor & Partner" },
   { href: "/get-involved?tab=volunteer", label: "Volunteer" },
   { href: "/get-involved?tab=donate", label: "Donate" },
   { href: "/get-involved?tab=partner", label: "Partner With Us" },
@@ -167,38 +169,40 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <Link
-              href="/get-involved"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-ps-gold px-4 py-2.5 text-sm font-bold text-ps-navy transition-opacity hover:opacity-90"
-            >
-              Get Involved
-              <span aria-hidden="true">&rarr;</span>
-            </Link>
+            <ButtonLink href="/partnership" className="mt-6">
+              Partner With Us
+            </ButtonLink>
           </FooterColumn>
         </div>
 
-        {/* Partners — full width below columns */}
-        <div className="mt-14 border-t border-white/10 pt-10">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-ps-gold">
-            Our Partners
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {partners.map((partner) => (
-              <span
-                key={partner}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/70"
-              >
-                {partner}
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-white/45">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          </p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <div className="flex flex-col items-center gap-2 sm:items-start">
+            <p className="text-sm text-white/45">
+              &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-start">
+              <Link
+                href="/privacy"
+                className="text-sm text-white/45 transition-colors hover:text-white/70"
+              >
+                Privacy policy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-sm text-white/45 transition-colors hover:text-white/70"
+              >
+                Terms of use
+              </Link>
+              <Link
+                href="/cookies"
+                className="text-sm text-white/45 transition-colors hover:text-white/70"
+              >
+                Cookie policy
+              </Link>
+              <CookieSettingsLink className="text-white/45 hover:text-white/70" />
+            </div>
+          </div>
           <p className="text-sm text-white/45">{siteConfig.tagline}</p>
         </div>
       </div>
