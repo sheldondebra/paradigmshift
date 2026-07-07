@@ -23,7 +23,21 @@ export const involvementTabs: { id: InvolvementTab; label: string; description: 
   },
 ];
 
-export const upcomingEvents = [
+export type EventItem = {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  category: string;
+  description: string;
+  theme?: string;
+  href?: string;
+  spotsLeft?: number;
+  capacity?: number;
+};
+
+export const upcomingEvents: EventItem[] = [
   {
     id: "building-nations-nurturing-creativity",
     title: "Building Nations: Nurturing Creativity",
@@ -36,53 +50,20 @@ export const upcomingEvents = [
     description:
       "A Phamily Circle symposium in partnership with Paradigm Shift — exploring creativity, entrepreneurship, and youth development with leading voices from Ghana's arts and social impact sectors.",
   },
+];
+
+export const pastEvents: EventItem[] = [
   {
-    id: "leadership-workshop-accra",
-    title: "Youth Leadership Workshop",
-    date: "Saturday, 15 March 2025",
-    time: "10:00 AM – 3:00 PM",
-    location: "Accra, Ghana",
-    category: "Mentorship",
-    spotsLeft: 24,
-    capacity: 40,
+    id: "paradigm-shift-2025",
+    title: "Paradigm Shift 2025 – A Movement for Change",
+    date: "Saturday, 16 August 2025",
+    time: "Full day",
+    location: "ISSER Conference Hall, University of Ghana, Legon",
+    category: "Flagship event",
+    theme: "Shifting Mindsets. Creating Solutions.",
     description:
-      "A hands-on session on leadership, public speaking, and personal development for young professionals.",
-  },
-  {
-    id: "health-outreach-kumasi",
-    title: "Community Health Outreach",
-    date: "Saturday, 29 March 2025",
-    time: "8:00 AM – 2:00 PM",
-    location: "Kumasi, Ghana",
-    category: "Health",
-    spotsLeft: 12,
-    capacity: 30,
-    description:
-      "Volunteer at mobile health screenings, wellness education, and sanitation awareness activities.",
-  },
-  {
-    id: "entrepreneurship-bootcamp",
-    title: "Entrepreneurship Bootcamp",
-    date: "Saturday, 12 April 2025",
-    time: "9:00 AM – 4:00 PM",
-    location: "Accra, Ghana",
-    category: "Education",
-    spotsLeft: 18,
-    capacity: 35,
-    description:
-      "Learn business fundamentals, pitch skills, and connect with mentors building sustainable livelihoods.",
-  },
-  {
-    id: "scholarship-info-session",
-    title: "Scholarship Info Session",
-    date: "Saturday, 26 April 2025",
-    time: "2:00 PM – 5:00 PM",
-    location: "Online (Zoom)",
-    category: "Education",
-    spotsLeft: 50,
-    capacity: 100,
-    description:
-      "Learn about eligibility, application deadlines, and support available for students in underserved communities.",
+      "Young leaders, entrepreneurs, and creatives came together for keynotes, breakout sessions, and networking under Phamily Circle. Hundreds joined from across Ghana to explore how fresh thinking can tackle old problems.",
+    href: "https://phamilycircle.com/paradigm-shift-2025-a-movement-for-change/",
   },
 ];
 

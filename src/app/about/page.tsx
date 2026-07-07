@@ -3,8 +3,9 @@ import Link from "next/link";
 import { LifeChangeOutcomesSection } from "@/components/impact/LifeImpactSection";
 import { PartnersNetwork } from "@/components/PartnersNetwork";
 import { SiteImageFill } from "@/components/SiteImage";
+import { SiteVideo } from "@/components/SiteVideo";
 import { PageHero, SectionHeading, CtaBand } from "@/components/ui";
-import { getFacebookEmbedUrl, facebookReel } from "@/lib/videos";
+import { siteVideo } from "@/lib/videos";
 import { focusAreas, missionStatement, visionStatement } from "@/lib/content";
 import { images } from "@/lib/images";
 import { createPageMetadata } from "@/lib/seo";
@@ -105,29 +106,14 @@ export default function AboutPage() {
             description="A glimpse of Paradigm Shift events, community, and the people driving change across Ghana."
             align="center"
           />
-          <div className="mx-auto mt-10 flex max-w-[350px] justify-center overflow-hidden rounded-2xl border border-ps-border bg-black shadow-xl">
-            <iframe
-              src={getFacebookEmbedUrl(350)}
-              title={facebookReel.title}
-              width="350"
-              height="620"
-              className="block w-full"
-              style={{ border: "none", overflow: "hidden" }}
-              scrolling="no"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              allowFullScreen
+          <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border border-ps-border bg-black shadow-xl">
+            <SiteVideo
+              variant="player"
+              poster={images.handshake}
+              title={siteVideo.title}
+              className="aspect-video w-full bg-black object-cover"
             />
           </div>
-          <p className="mt-6 text-center">
-            <Link
-              href={facebookReel.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-bold text-ps-navy underline decoration-ps-gold decoration-2 underline-offset-4"
-            >
-              Open reel on Facebook
-            </Link>
-          </p>
         </div>
       </section>
 

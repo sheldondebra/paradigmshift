@@ -1,23 +1,16 @@
 import Link from "next/link";
 import { FocusAreasCarousel } from "@/components/FocusAreasCarousel";
-import { missionStatement, siteConfig, visionStatement } from "@/lib/content";
+import { collaborativePartners, missionStatement, parentOrganization, siteConfig, visionStatement } from "@/lib/content";
 import { lifeImpactStories } from "@/lib/impact-stories";
 import { galleryImages, getImageMeta, images, isHighRes } from "@/lib/images";
 import { SiteImageFill } from "@/components/SiteImage";
-import { PartnersNetwork } from "@/components/PartnersNetwork";
+import { SiteVideo } from "@/components/SiteVideo";
 import { ButtonLink, SectionHeading } from "./ui";
 
 export function HeroSection() {
   return (
     <section className="relative flex min-h-[92vh] items-end overflow-hidden">
-      <SiteImageFill
-        src={images.hero}
-        alt="Young adults at a Paradigm Shift event in Ghana"
-        priority
-        displayWidth={1024}
-        className="object-cover"
-        sizes="100vw"
-      />
+      <SiteVideo variant="background" />
       <div className="absolute inset-0 bg-hero-gradient" />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-36 sm:px-8 sm:pb-28">
@@ -235,23 +228,55 @@ export function GallerySection() {
 
 export function PartnersSection() {
   return (
-    <section className="border-y border-ps-border bg-white py-16">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading
-          label="Collaboration"
-          title="Partner With Us"
-          description="Real change is built together — with local leaders, businesses, and organizations across Ghana."
-          align="center"
-        />
-
-        <div className="mt-10">
-          <PartnersNetwork />
+    <section className="bg-ps-cream py-20 sm:py-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-ps-navy sm:text-4xl">
+            Partner with us
+          </h2>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-ps-muted">
+            Sponsors, venues, mentors, and local brands help us run workshops and community
+            events across Accra. If you want to show up for young entrepreneurs in Ghana, we
+            would like to hear from you.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <ButtonLink href="/partnership">See the proposal</ButtonLink>
+            <ButtonLink href="/contact" variant="outline-dark" showArrow={false}>
+              Get in touch
+            </ButtonLink>
+          </div>
         </div>
 
-        <div className="mt-8 text-center">
-          <ButtonLink href="/partnership" variant="secondary">
-            Become a Partner
-          </ButtonLink>
+        <div className="rounded-2xl border border-ps-border bg-white p-6 shadow-sm sm:p-8">
+          <p className="text-sm text-ps-muted">
+            {siteConfig.name} runs under{" "}
+            <span className="font-semibold text-ps-navy">{parentOrganization.name}</span>.
+          </p>
+
+          {collaborativePartners.length > 0 && (
+            <div className="mt-6 border-t border-ps-border pt-6">
+              <p className="text-sm font-semibold text-ps-navy">People we have worked with</p>
+              <ul className="mt-4 space-y-3">
+                {collaborativePartners.map((partner) => (
+                  <li key={partner.name} className="flex items-center gap-3 text-sm text-ps-muted">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-ps-gold" aria-hidden="true" />
+                    {partner.href ? (
+                      <a
+                        href={partner.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-ps-navy transition-colors hover:text-ps-green"
+                      >
+                        {partner.name}
+                      </a>
+                    ) : (
+                      <span className="font-medium text-ps-navy">{partner.name}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

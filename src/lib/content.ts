@@ -118,7 +118,7 @@ export type CollaborativePartner = {
 export const collaborativePartners: CollaborativePartner[] = [
   { name: "360 Marketing" },
   { name: "FBN Fab by Nice" },
-  { name: "TEC UNIT", href: "https://www.tecunitgh.com" },
+  { name: "Tecunit Ghana", href: "https://www.tecunitgh.com" },
 ];
 
 /** @deprecated Use parentOrganization + collaborativePartners */

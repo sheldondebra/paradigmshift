@@ -52,9 +52,9 @@ body {
 .bg-hero-gradient {
   background: linear-gradient(
     135deg,
-    rgba(10, 22, 40, 0.92) 0%,
-    rgba(10, 22, 40, 0.55) 55%,
-    rgba(10, 22, 40, 0.25) 100%
+    rgba(10, 22, 40, 0.96) 0%,
+    rgba(10, 22, 40, 0.72) 55%,
+    rgba(10, 22, 40, 0.48) 100%
   );
 }
 

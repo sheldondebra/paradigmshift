@@ -30,7 +30,7 @@ export const partnershipWhy = {
     },
     {
       title: "Partners who've been here before",
-      text: "We've worked with collaborative partners like 360 Marketing, TEC UNIT, and FBN Fab by Nice — and we operate under Phamily Circle, our parent organisation. They didn't join us because we had the biggest budget. They joined because the mission is real and the follow-through is too.",
+      text: "We've worked with collaborative partners like 360 Marketing, Tecunit Ghana, and FBN Fab by Nice — and we operate under Phamily Circle, our parent organisation. They didn't join us because we had the biggest budget. They joined because the mission is real and the follow-through is too.",
     },
   ],
 };
