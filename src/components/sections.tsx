@@ -2,7 +2,8 @@ import Link from "next/link";
 import { FocusAreasCarousel } from "@/components/FocusAreasCarousel";
 import { collaborativePartners, missionStatement, parentOrganization, siteConfig, visionStatement } from "@/lib/content";
 import { lifeImpactStories } from "@/lib/impact-stories";
-import { galleryImages, getImageMeta, images, isHighRes } from "@/lib/images";
+import { galleryAlbums, getAlbumCover } from "@/lib/gallery";
+import { images } from "@/lib/images";
 import { SiteImageFill } from "@/components/SiteImage";
 import { SiteVideo } from "@/components/SiteVideo";
 import { ButtonLink, SectionHeading } from "./ui";
@@ -175,8 +176,6 @@ export function ImpactSection() {
 }
 
 export function GallerySection() {
-  const featured = galleryImages.slice(0, 8);
-
   return (
     <section className="py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
@@ -187,39 +186,40 @@ export function GallerySection() {
           align="center"
         />
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          {featured.map((src, i) => {
-            const meta = getImageMeta(src);
-            const large = i === 0 && isHighRes(src);
-            const displayWidth = large ? Math.min(meta.width, 640) : Math.min(meta.width, 280);
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          {galleryAlbums.map((album) => {
+            const cover = getAlbumCover(album);
 
             return (
-              <div
-                key={src}
-                className={`group relative overflow-hidden rounded-2xl bg-ps-cream ${
-                  large ? "col-span-2 row-span-2 aspect-square" : "aspect-square"
-                }`}
+              <Link
+                key={album.slug}
+                href={`/gallery/${album.slug}`}
+                className="group overflow-hidden rounded-2xl border border-ps-border bg-white shadow-sm transition-shadow hover:shadow-lg"
               >
-                <SiteImageFill
-                  src={src}
-                  alt=""
-                  displayWidth={displayWidth}
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes={large ? "(max-width: 768px) 100vw, 640px" : "(max-width: 768px) 50vw, 280px"}
-                />
-              </div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-ps-cream">
+                  <SiteImageFill
+                    src={cover.src}
+                    alt=""
+                    displayWidth={cover.width}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 560px"
+                  />
+                </div>
+                <div className="p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-ps-green">
+                    {album.dateLabel}
+                  </p>
+                  <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ps-navy">
+                    {album.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-bold text-ps-gold-dark">
+                    {album.photos.length} photos
+                    <span aria-hidden="true"> &rarr;</span>
+                  </p>
+                </div>
+              </Link>
             );
           })}
-        </div>
-
-        <div className="mt-10 text-center">
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 text-sm font-bold text-ps-navy transition-colors hover:text-ps-gold-dark"
-          >
-            View news &amp; impact stories
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
         </div>
       </div>
     </section>

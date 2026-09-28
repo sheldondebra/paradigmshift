@@ -36,6 +36,7 @@ export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/news", label: "News & Impact" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/partnership", label: "Partnership" },
   { href: "/get-involved", label: "Get Involved" },
   { href: "/contact", label: "Contact Us" },

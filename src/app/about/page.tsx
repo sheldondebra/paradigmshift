@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BoardProfiles } from "@/components/about/BoardProfiles";
 import { LifeChangeOutcomesSection } from "@/components/impact/LifeImpactSection";
 import { PartnersNetwork } from "@/components/PartnersNetwork";
 import { SiteImageFill } from "@/components/SiteImage";
@@ -74,6 +75,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <BoardProfiles />
 
       <section className="py-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
