@@ -1,5 +1,6 @@
 import conferenceMeeting from "@/lib/gallery/paradigm-shift-conference-meeting-2026.json";
 import dinnerMeeting from "@/lib/gallery/paradigm-shift-dinner-meeting-2026.json";
+import { conferenceTrailer } from "@/lib/videos";
 
 export type GalleryPhoto = {
   src: string;
@@ -16,12 +17,22 @@ export type GalleryAlbum = {
   description: string;
   credit: string;
   photos: GalleryPhoto[];
+  video?: {
+    src: string;
+    poster: string;
+    title: string;
+  };
 };
 
 export const galleryAlbums: GalleryAlbum[] = [
   {
     ...conferenceMeeting,
     credit: "Photography by Hyperview Studios",
+    video: {
+      src: conferenceTrailer.src,
+      poster: conferenceTrailer.poster,
+      title: conferenceTrailer.title,
+    },
   },
   {
     ...dinnerMeeting,

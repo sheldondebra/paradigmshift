@@ -7,6 +7,7 @@ import { siteVideo } from "@/lib/videos";
 
 type SiteVideoProps = {
   variant?: "background" | "player";
+  src?: string;
   poster?: string;
   className?: string;
   title?: string;
@@ -83,6 +84,7 @@ function HeroBackgroundVideo({
 
 export function SiteVideo({
   variant = "player",
+  src = siteVideo.src,
   poster = images.hero,
   className = "",
   title = siteVideo.title,
@@ -145,7 +147,7 @@ export function SiteVideo({
           : className
       }
     >
-      <source src={siteVideo.src} type="video/mp4" />
+      <source src={src} type="video/mp4" />
       Your browser does not support embedded video.
     </video>
   );

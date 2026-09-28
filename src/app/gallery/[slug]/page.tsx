@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AlbumGallery } from "@/components/gallery/AlbumGallery";
+import { SiteVideo } from "@/components/SiteVideo";
 import { PageHero } from "@/components/ui";
 import { galleryAlbums, getAlbum, getAlbumCover } from "@/lib/gallery";
 import { createPageMetadata } from "@/lib/seo";
@@ -65,6 +66,18 @@ export default async function GalleryAlbumPage({ params }: Props) {
               All albums
             </Link>
           </div>
+
+          {album.video && (
+            <div className="mb-10 overflow-hidden rounded-2xl border border-ps-border bg-black shadow-xl">
+              <SiteVideo
+                variant="player"
+                src={album.video.src}
+                poster={album.video.poster}
+                title={album.video.title}
+                className="aspect-video w-full bg-black object-cover"
+              />
+            </div>
+          )}
 
           <AlbumGallery photos={album.photos} />
         </div>

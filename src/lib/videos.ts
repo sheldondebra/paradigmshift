@@ -10,6 +10,14 @@ export const siteVideo = {
   },
 };
 
+export const conferenceTrailer = {
+  src: "/conference-trailer-2026.mp4",
+  poster: "/images/conference-trailer-2026-poster.jpg",
+  title: "Paradigm Shift Conference 2026",
+  description:
+    "Watch the trailer from the Paradigm Shift conference — speakers, workshops, and the room that came together in Ghana.",
+};
+
 export const facebookReel = {
   id: "852343104590291",
   url: "https://www.facebook.com/reel/852343104590291",

@@ -6,7 +6,7 @@ import { PartnersNetwork } from "@/components/PartnersNetwork";
 import { SiteImageFill } from "@/components/SiteImage";
 import { SiteVideo } from "@/components/SiteVideo";
 import { PageHero, SectionHeading, CtaBand } from "@/components/ui";
-import { siteVideo } from "@/lib/videos";
+import { conferenceTrailer } from "@/lib/videos";
 import { focusAreas, missionStatement, visionStatement } from "@/lib/content";
 import { images } from "@/lib/images";
 import { createPageMetadata } from "@/lib/seo";
@@ -105,15 +105,16 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <SectionHeading
             label="Video"
-            title="See Us in Action"
-            description="A glimpse of Paradigm Shift events, community, and the people driving change across Ghana."
+            title={conferenceTrailer.title}
+            description={conferenceTrailer.description}
             align="center"
           />
           <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border border-ps-border bg-black shadow-xl">
             <SiteVideo
               variant="player"
-              poster={images.handshake}
-              title={siteVideo.title}
+              src={conferenceTrailer.src}
+              poster={conferenceTrailer.poster}
+              title={conferenceTrailer.title}
               className="aspect-video w-full bg-black object-cover"
             />
           </div>
